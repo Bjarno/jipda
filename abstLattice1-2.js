@@ -1,5 +1,19 @@
 "use strict";
 
+if (typeof module !== 'undefined' && module.exports != null) {
+
+      var common          = require('./common.js');
+      var HashMap         = common.HashMap;
+      var ArraySet        = common.ArraySet;
+      var Indexer         = common.Indexer;
+      var HashCode        = common.HashCode;
+      var Ast             = require('./ast.js').Ast;
+      var createTagAg     = require('./tagAg.js').createTagAg;
+      var lattice         = require('./lattice.js');
+      var Ecma            = lattice.Ecma;
+      var BOT             = lattice.BOT; 
+}
+
 JipdaValue.UND = 1 << 0;
 JipdaValue.NULL = 1 << 1;
 JipdaValue.STR = 1 << 2;
@@ -686,4 +700,9 @@ JipdaLattice.prototype.sanity =
     assert(this.abst1("xyz").isTruthy());
     assert(this.abst1(true).isTruthy());
     assert(this.abst1(false).isFalsy());
+  }
+
+
+  if (typeof module !== 'undefined' && module.exports != null) {
+    exports.JipdaLattice = JipdaLattice;
   }

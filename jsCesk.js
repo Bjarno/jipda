@@ -1,4 +1,31 @@
-"use strict";
+if (typeof module !== 'undefined' && module.exports != null) {
+
+      var common          = require('./common.js');
+      var HashMap         = common.HashMap;
+      var ArraySet        = common.ArraySet;
+      var Indexer         = common.Indexer;
+      var MutableHashSet  = common.MutableHashSet;
+      var HashCode        = common.HashCode;
+      var Formatter       = common.Formatter;
+
+
+      var assert                = common.assert;
+      var assertDefinedNotNull  = common.assertDefinedNotNull;
+      var Ast                   = require('./ast.js').Ast;
+      var createTagAg           = require('./tagAg.js').createTagAg;
+      var Obj                   = require('./object.js').Obj;
+      var Benv                  = require('./benv.js').Benv;
+      var Store                 = require('./countingStore.js').Store;
+
+      var nowp                  = require('performance-now');
+      var performance           = { now : function () {return nowp()}};
+      var print                 = function () { console.log(Array.prototype.slice.call(arguments).join(" ")) };
+
+      var Agc                   = require('./agc.js').Agc;
+      var lattice         = require('./lattice.js');
+      var Ecma            = lattice.Ecma;
+      var BOT             = lattice.BOT;    
+}
 
 var EMPTY_LKONT = [];
 var EMPTY_ADDRESS_SET = ArraySet.empty();
@@ -7,6 +34,8 @@ var ast0src = "";
 ast0src += "Array.prototype.map = function (f) { var result = [];for (var i = 0; i < this.length; i++){result.push(f(this[i]))}; return result}\n";
 ast0src += "Array.prototype.filter = function (f) { var result = [];for (var i = 0; i < this.length; i++){var x = this[i]; if (f(x)) (result.push(x))}; return result}\n";
 ast0src += "Array.prototype.indexOf = function (x) { for (var i = 0; i < this.length; i++){if (this[i]===x) return i}; return -1}\n";
+ast0src += "Array.prototype.slice = function (x) {var result = []; for (var i = 0; i < x; i++){result.push(this[i])}; return result}\n";
+ast0src += "Array.prototype.forEach = function (f) { for (var i = 0; i < this.length; i++){f(this[i])};}\n";
 const ast0 = Ast.createAst(ast0src);
 
 function jsCesk(cc)
@@ -4539,3 +4568,9 @@ Effect.prototype.isAllocEffect =
   }
 
 var storeI = new Indexer();
+
+
+if (typeof module !== 'undefined' && module.exports != null) {
+          exports.jsCesk = jsCesk;
+
+}

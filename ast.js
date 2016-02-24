@@ -465,7 +465,7 @@ Ast.createAst =
   function (source, config)
   {
     config = config || {loc:true, keepTagCounter:false};
-    var ast = esprima.parse(source, {loc:config.loc});
+    var ast = esprima.parse(source, {loc: (config ? config.loc : false), owningComments : true, comment : true, tokens: true, range : true});
     if (!config.keepTagCounter)
     {
       __nodeCounter__ = 0;
@@ -567,7 +567,8 @@ Ast.createAst =
     }
     return false;
   }
-  
+  Ast.parent = parent;
+
   function isDeclarationIdentifier(n, ast)
   {
     if (Ast.isIdentifier(n))
@@ -756,6 +757,12 @@ Ast.findDeclarationNode =
       enclosingFunScope = Ast.enclosingFunScope(enclosingFunScope, ast);
     }
     return false;
+  }
+
+
+  if (typeof module !== 'undefined' && module.exports != null) {
+        var esprima = require('../stip/lib/esprima.js');
+        exports.Ast            = Ast;
   }
 
 ////////////////
