@@ -260,7 +260,7 @@ Pdg.writeAccess =
 
 
 if (typeof module !== 'undefined' && module.exports != null) {
-        var jsCesk          = require('../jsCesk.js').jsCesk;
+        var jsCesk          = require('../jscesk.js').jsCesk;
         var createTagAg     = require('../tagAg.js').createTagAg;
         var JipdaLattice    = require('../abstLattice1-2.js').JipdaLattice;
         var Ast             = require('../ast.js').Ast;
