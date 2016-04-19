@@ -14,6 +14,9 @@ Lattice.join =
     return x.join(y);
   }
 
+var common          = require('./common.js');
+var ArraySet        = common.ArraySet;
+
 var BOT = Object.create(null); // should be 'const', but gives problems with rebuilding 
 BOT.join = function (other) { return other };
 BOT.meet = function (other) { return BOT };
